@@ -1,0 +1,18 @@
+jobs:
+  test:
+    name: Ci
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Init
+        uses: actions/checkout@v2
+      - name: Install Deps
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./check/test
+
+name: Ci
+
+on:
+  schedule:
+    - cron: "50 */6 * * *"
